@@ -1,4 +1,4 @@
-package config;
+package cug.sakura.config;
 
 /**
  * @program: NettyRPC
