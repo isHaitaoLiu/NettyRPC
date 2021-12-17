@@ -1,9 +1,10 @@
-package cug.sakura.serializer;
+package cug.sakura.netty.rpc.serializer;
 
 import com.dyuproject.protostuff.LinkedBuffer;
 import com.dyuproject.protostuff.ProtostuffIOUtil;
 import com.dyuproject.protostuff.Schema;
 import com.dyuproject.protostuff.runtime.RuntimeSchema;
+import cug.sakura.netty.rpc.exception.SerializerException;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -43,7 +44,7 @@ public class ProtostuffSerializer extends Serializer{
 
     @SuppressWarnings("unchecked")
     @Override
-    public <T> byte[] serialize(T obj) {
+    public <T> byte[] serialize(T obj) throws SerializerException{
         //解析类型，得到其缓存的组织结构
         Class<T> clazz = (Class<T>) obj.getClass();
         Schema<T> schema = getSchema(clazz);
@@ -51,20 +52,26 @@ public class ProtostuffSerializer extends Serializer{
         try {
             //将其序列化
             data = ProtostuffIOUtil.toByteArray(obj, schema, buffer);
-        } finally {
+        } catch (Exception e){
+            throw new SerializerException(e);
+        } finally{
             buffer.clear();
         }
         return data;
     }
 
     @Override
-    public <T> Object deserialize(byte[] bytes, Class<T> clazz) {
-        //解析类型，得到其缓存的组织结构
-        Schema<T> schema = getSchema(clazz);
-        //创建对象
-        T obj = schema.newMessage();
-        //反序列化
-        ProtostuffIOUtil.mergeFrom(bytes, obj, schema);
-        return obj;
+    public <T> Object deserialize(byte[] bytes, Class<T> clazz) throws SerializerException{
+        try {
+            //解析类型，得到其缓存的组织结构
+            Schema<T> schema = getSchema(clazz);
+            //创建对象
+            T obj = schema.newMessage();
+            //反序列化
+            ProtostuffIOUtil.mergeFrom(bytes, obj, schema);
+            return obj;
+        }catch (Exception e){
+            throw new SerializerException(e);
+        }
     }
 }

@@ -1,6 +1,6 @@
-package cug.sakura.zookeeper;
+package cug.sakura.netty.rpc.zookeeper;
 
-import cug.sakura.config.Constant;
+import cug.sakura.netty.rpc.config.Constant;
 import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.framework.CuratorFrameworkFactory;
 import org.apache.curator.framework.recipes.cache.*;
