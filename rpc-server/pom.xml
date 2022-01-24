@@ -16,5 +16,17 @@
             <artifactId>NettyRPC</artifactId>
             <version>1.0</version>
         </dependency>
+        <dependency>
+            <groupId>cug.sakura</groupId>
+            <artifactId>rpc-core</artifactId>
+            <version>1.0</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>cug.sakura</groupId>
+            <artifactId>rpc-core</artifactId>
+            <version>1.0</version>
+            <scope>compile</scope>
+        </dependency>
     </dependencies>
 </project>

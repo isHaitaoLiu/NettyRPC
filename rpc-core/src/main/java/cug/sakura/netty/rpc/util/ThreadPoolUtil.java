@@ -11,7 +11,7 @@ import java.util.concurrent.TimeUnit;
  * @create: 2022-01-05 21:41
  **/
 
-public class ServicePoolService {
+public class ThreadPoolUtil{
     public static ThreadPoolExecutor makeServerThreadPool(final String serviceName, int corePoolSize, int maxPoolSize) {
 
         return new ThreadPoolExecutor(

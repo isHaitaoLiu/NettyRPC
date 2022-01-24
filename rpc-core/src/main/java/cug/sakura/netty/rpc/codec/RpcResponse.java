@@ -13,10 +13,10 @@ import java.io.Serializable;
 
 @Data
 public class RpcResponse implements Serializable {
-    static final Integer SUCCESS = 200;
-    static final Integer SERVER_ERROR = 500;
-    static final Integer CLIENT_ERROR = 400;
-    static final Integer SEND_FAILED = 300;
+    public static final Integer SUCCESS = 200;
+    public static final Integer SERVER_ERROR = 500;
+    public static final Integer CLIENT_ERROR = 400;
+    public static final Integer SEND_FAILED = 300;
 
     private static final long serialVersionUID = 2047916088543420953L;
     private String requestId;
